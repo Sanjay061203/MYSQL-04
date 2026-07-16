@@ -1,0 +1,776 @@
+mysql> TEE D:/MYSQL/DAY-4.TXT
+Logging to file 'D:/MYSQL/DAY-4.TXT'
+mysql> CREATE TABLE EMPLOYEES(EMPID CHAR(23),EMPNAME VARCHAR(67),AGE INT,DOJ DATE,ADDRESS TINYTEXT,DEPT VARCHAR(50));
+ERROR 1050 (42S01): Table 'employees' already exists
+mysql> CREATE TABLE EMPLOYEES1(EMPID CHAR(23),EMPNAME VARCHAR(67),AGE INT,DOJ DATE,ADDRESS TINYTEXT,DEPT VARCHAR(50));
+Query OK, 0 rows affected (0.08 sec)
+
+mysql> DROP TABLE EMPLOYEES;
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> USE TABLE EMPLOYEES;
+ERROR 1049 (42000): Unknown database 'table'
+mysql> SHOW TABLES;
++----------------+
+| Tables_in_pfs4 |
++----------------+
+| employees1     |
++----------------+
+1 row in set (0.00 sec)
+
+mysql> SHOW COLUMNS FROM EMPLOYEES1;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| EMPID   | char(23)    | YES  |     | NULL    |       |
+| EMPNAME | varchar(67) | YES  |     | NULL    |       |
+| AGE     | int         | YES  |     | NULL    |       |
+| DOJ     | date        | YES  |     | NULL    |       |
+| ADDRESS | tinytext    | YES  |     | NULL    |       |
+| DEPT    | varchar(50) | YES  |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+6 rows in set (0.01 sec)
+
+mysql> DES OF EMPLOYEES1;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'DES OF EMPLOYEES1' at line 1
+mysql> DESC OF EMPLOYEES1;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'OF EMPLOYEES1' at line 1
+mysql> DESC EMPLOYEES1;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| EMPID   | char(23)    | YES  |     | NULL    |       |
+| EMPNAME | varchar(67) | YES  |     | NULL    |       |
+| AGE     | int         | YES  |     | NULL    |       |
+| DOJ     | date        | YES  |     | NULL    |       |
+| ADDRESS | tinytext    | YES  |     | NULL    |       |
+| DEPT    | varchar(50) | YES  |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+mysql> 
+COOMON USES OF ALTER TABLE
+==========================
+1.ADD NEW COLUMN
+2.MODIFY AN EXISTING COLUMN(TYPE,SIZE,DEAFULT..ETC)
+3.drop column
+4.rename a column or table
+5.add or remove constraints
+6.change column order(in some databases).
+
+
+syntax
+------alter table table-name<modification>;
+
+alter table table-name add column-name datatype(size);
+
+mysql> SHOW COLUMNS FROM EMPLOYEES1;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| EMPID   | char(23)    | YES  |     | NULL    |       |
+| EMPNAME | varchar(67) | YES  |     | NULL    |       |
+| AGE     | int         | YES  |     | NULL    |       |
+| DOJ     | date        | YES  |     | NULL    |       |
+| ADDRESS | tinytext    | YES  |     | NULL    |       |
+| DEPT    | varchar(50) | YES  |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+6 rows in set (0.01 sec)
+
+mysql> DES OF EMPLOYEES1;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'DES OF EMPLOYEES1' at line 1
+mysql> DESC OF EMPLOYEES1;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'OF EMPLOYEES1' at line 1
+mysql> DESC EMPLOYEES1;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| EMPID   | char(23)    | YES  |     | NULL    |       |
+| EMPNAME | varchar(67) | YES  |     | NULL    |       |
+| AGE     | int         | YES  |     | NULL    |       |
+| DOJ     | date        | YES  |     | NULL    |       |
+| ADDRESS | tinytext    | YES  |     | NULL    |       |
+| DEPT    | varchar(50) | YES  |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+mysql> --add a new cloumn named location datatype tinytext to the employees table.
+    -> ALTER TABLE EMPLOYEES ADD LOCATION TINYTEXT;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '--add a new cloumn named location datatype tinytext to the employees table.
+ALTE' at line 1
+mysql> DESC EMPLOYEES;
+ERROR 1146 (42S02): Table 'pfs4.employees' doesn't exist
+mysql> ALTER TABLE EMPLOYEES1 ADD LOCATION TINYTEXT;
+Query OK, 0 rows affected (0.06 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> DESC EMPLOYEES1;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| EMPID    | char(23)    | YES  |     | NULL    |       |
+| EMPNAME  | varchar(67) | YES  |     | NULL    |       |
+| AGE      | int         | YES  |     | NULL    |       |
+| DOJ      | date        | YES  |     | NULL    |       |
+| ADDRESS  | tinytext    | YES  |     | NULL    |       |
+| DEPT     | varchar(50) | YES  |     | NULL    |       |
+| LOCATION | tinytext    | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+7 rows in set (0.00 sec)
+
+mysql> --YOU CAN ADD AT A PARTICUALAR COLUMN TOO.
+    -> --ALTER TABLE TABLE-NAME ADD LOCATION DATAYPE(SIZE) AFTER EMPID;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '--YOU CAN ADD AT A PARTICUALAR COLUMN TOO.
+--ALTER TABLE TABLE-NAME ADD LOCATION' at line 1
+mysql> ALTER TABLE EMPLOYEES1 ADD LOCATION TINYTEXT AFTER EMPID;
+ERROR 1060 (42S21): Duplicate column name 'LOCATION'
+mysql> DESC EMPLOYEES1
+    -> DESC EMPLOYEES1;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'DESC EMPLOYEES1' at line 2
+mysql> ALTER TABLE EMPLOYEES1 ADD SURNAME VARCHAR(23) AFTER EMPID;
+Query OK, 0 rows affected (0.05 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> DESC EMPLOYEES1;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| EMPID    | char(23)    | YES  |     | NULL    |       |
+| SURNAME  | varchar(23) | YES  |     | NULL    |       |
+| EMPNAME  | varchar(67) | YES  |     | NULL    |       |
+| AGE      | int         | YES  |     | NULL    |       |
+| DOJ      | date        | YES  |     | NULL    |       |
+| ADDRESS  | tinytext    | YES  |     | NULL    |       |
+| DEPT     | varchar(50) | YES  |     | NULL    |       |
+| LOCATION | tinytext    | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+8 rows in set (0.00 sec)
+
+mysql> --MODIFY.
+    -> ALTER TABLE EMPLOYEES1 MODIFY EMPNAME VARCHAR(50);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '--MODIFY.
+ALTER TABLE EMPLOYEES1 MODIFY EMPNAME VARCHAR(50)' at line 1
+mysql> ALTER TABLE EMPLOYEES1 MODIFY EMPNAME VARCHAR(50);
+Query OK, 0 rows affected (0.07 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> DESC EMPLOYEES1;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| EMPID    | char(23)    | YES  |     | NULL    |       |
+| SURNAME  | varchar(23) | YES  |     | NULL    |       |
+| EMPNAME  | varchar(50) | YES  |     | NULL    |       |
+| AGE      | int         | YES  |     | NULL    |       |
+| DOJ      | date        | YES  |     | NULL    |       |
+| ADDRESS  | tinytext    | YES  |     | NULL    |       |
+| DEPT     | varchar(50) | YES  |     | NULL    |       |
+| LOCATION | tinytext    | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+8 rows in set (0.00 sec)
+
+mysql> --CHANGE COLUMN NAME.
+    -> --ALTER TABLE TABLE-NAME CHANGE EXISTING COLUMN NAME NEW COLUMN NAME DATATYPE(SIZE).
+    -> ALTER TABLE EMPLOYEES1 CHANGE EMPNAME EMPLOYEENAME VARCHAR(60);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '--CHANGE COLUMN NAME.
+--ALTER TABLE TABLE-NAME CHANGE EXISTING COLUMN NAME NEW C' at line 1
+mysql> ALTER TABLE EMPLOYEES1 CHANGE EMPNAME EMPLOYEENAME VARCHAR(60);
+Query OK, 0 rows affected (0.01 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> DESC EMPLOYEES1;
++--------------+-------------+------+-----+---------+-------+
+| Field        | Type        | Null | Key | Default | Extra |
++--------------+-------------+------+-----+---------+-------+
+| EMPID        | char(23)    | YES  |     | NULL    |       |
+| SURNAME      | varchar(23) | YES  |     | NULL    |       |
+| EMPLOYEENAME | varchar(60) | YES  |     | NULL    |       |
+| AGE          | int         | YES  |     | NULL    |       |
+| DOJ          | date        | YES  |     | NULL    |       |
+| ADDRESS      | tinytext    | YES  |     | NULL    |       |
+| DEPT         | varchar(50) | YES  |     | NULL    |       |
+| LOCATION     | tinytext    | YES  |     | NULL    |       |
++--------------+-------------+------+-----+---------+-------+
+8 rows in set (0.00 sec)
+
+mysql> ALTER TABLE EMPLOYESS1 CHANGE EMPID EMPLOYEEID CHAR(34);
+ERROR 1146 (42S02): Table 'pfs4.employess1' doesn't exist
+mysql> ALTER TABLE EMPLOYESS1 CHANGE EMPID EMPLOYEEID CHAR(34);
+ERROR 1146 (42S02): Table 'pfs4.employess1' doesn't exist
+mysql> ALTER TABLE EMPLOYEES1 CHANGE EMPID EMPLOYEEID CHAR(34);
+Query OK, 0 rows affected (0.05 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> DESC EMPLOYEES1;
++--------------+-------------+------+-----+---------+-------+
+| Field        | Type        | Null | Key | Default | Extra |
++--------------+-------------+------+-----+---------+-------+
+| EMPLOYEEID   | char(34)    | YES  |     | NULL    |       |
+| SURNAME      | varchar(23) | YES  |     | NULL    |       |
+| EMPLOYEENAME | varchar(60) | YES  |     | NULL    |       |
+| AGE          | int         | YES  |     | NULL    |       |
+| DOJ          | date        | YES  |     | NULL    |       |
+| ADDRESS      | tinytext    | YES  |     | NULL    |       |
+| DEPT         | varchar(50) | YES  |     | NULL    |       |
+| LOCATION     | tinytext    | YES  |     | NULL    |       |
++--------------+-------------+------+-----+---------+-------+
+8 rows in set (0.00 sec)
+
+mysql> --DROP A COLUMN
+    -> --ALTER TABLE TABLENAME DROP COLUMN COLUMNNAME.
+    -> --ALTER TABLE EMPLOYEES1 DROP COLUMN LOCATION;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '--DROP A COLUMN
+--ALTER TABLE TABLENAME DROP COLUMN COLUMNNAME.
+--ALTER TABLE EM' at line 1
+mysql> --ALTER TABLE EMPLOYEES1 DROP COLUMN LOCATION;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '--ALTER TABLE EMPLOYEES1 DROP COLUMN LOCATION' at line 1
+mysql> ALTER TABLE EMPLOYEES1 DROP COLUMN LOCATION;
+Query OK, 0 rows affected (0.04 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> DESC EMPLOYEES1;
++--------------+-------------+------+-----+---------+-------+
+| Field        | Type        | Null | Key | Default | Extra |
++--------------+-------------+------+-----+---------+-------+
+| EMPLOYEEID   | char(34)    | YES  |     | NULL    |       |
+| SURNAME      | varchar(23) | YES  |     | NULL    |       |
+| EMPLOYEENAME | varchar(60) | YES  |     | NULL    |       |
+| AGE          | int         | YES  |     | NULL    |       |
+| DOJ          | date        | YES  |     | NULL    |       |
+| ADDRESS      | tinytext    | YES  |     | NULL    |       |
+| DEPT         | varchar(50) | YES  |     | NULL    |       |
++--------------+-------------+------+-----+---------+-------+
+7 rows in set (0.00 sec)
+
+mysql> --CHANGE TABLE NAME.
+    -> --SYNTAX: ALTER TABLE EXISTING TABLE NAME RENAME TO NEW TABLE NAME.
+    -> ALTER TABLE EMPLOYEES1 RENMAE TO CODEGNAN_PFS4;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '--CHANGE TABLE NAME.
+--SYNTAX: ALTER TABLE EXISTING TABLE NAME RENAME TO NEW TAB' at line 1
+mysql> ALTER TABLE EMPLOYEES1 RENAME TO CODEGNAN_PFS4;
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> SHOW TABLES;
++----------------+
+| Tables_in_pfs4 |
++----------------+
+| codegnan_pfs4  |
++----------------+
+1 row in set (0.00 sec)
+
+mysql> DESC CODEGNAN_PFS4;
++--------------+-------------+------+-----+---------+-------+
+| Field        | Type        | Null | Key | Default | Extra |
++--------------+-------------+------+-----+---------+-------+
+| EMPLOYEEID   | char(34)    | YES  |     | NULL    |       |
+| SURNAME      | varchar(23) | YES  |     | NULL    |       |
+| EMPLOYEENAME | varchar(60) | YES  |     | NULL    |       |
+| AGE          | int         | YES  |     | NULL    |       |
+| DOJ          | date        | YES  |     | NULL    |       |
+| ADDRESS      | tinytext    | YES  |     | NULL    |       |
+| DEPT         | varchar(50) | YES  |     | NULL    |       |
++--------------+-------------+------+-----+---------+-------+
+7 rows in set (0.00 sec)
+
+mysql> ALTER TABLE CODEGNAN_PFS4 RENAME TO EMPLOYEES;
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> DESC EMPLOYEES;
++--------------+-------------+------+-----+---------+-------+
+| Field        | Type        | Null | Key | Default | Extra |
++--------------+-------------+------+-----+---------+-------+
+| EMPLOYEEID   | char(34)    | YES  |     | NULL    |       |
+| SURNAME      | varchar(23) | YES  |     | NULL    |       |
+| EMPLOYEENAME | varchar(60) | YES  |     | NULL    |       |
+| AGE          | int         | YES  |     | NULL    |       |
+| DOJ          | date        | YES  |     | NULL    |       |
+| ADDRESS      | tinytext    | YES  |     | NULL    |       |
+| DEPT         | varchar(50) | YES  |     | NULL    |       |
++--------------+-------------+------+-----+---------+-------+
+7 rows in set (0.01 sec)
+
+mysql> SHOW DATABASES;
++--------------------+
+| Database           |
++--------------------+
+| 43sd432            |
+| _____              |
+| da4                |
+| da_4               |
+| information_schema |
+| mysql              |
+| performance_schema |
+| pfs4               |
+| sanjaykumar        |
+| sys                |
++--------------------+
+10 rows in set (0.00 sec)
+
+mysql> USE PFS4;
+Database changed
+mysql> CREATE TABLE COMPANY_STAFF;
+ERROR 4028 (HY000): A table must have at least one visible column.
+mysql> CREATE TABLE COMPANY_STAFF;
+ERROR 4028 (HY000): A table must have at least one visible column.
+mysql> CREATE TABLE COMPANY_STAFF(EMPID INT,AGE TINYTEXT,EXPERIENCE SMALLINT,GENGER CHAR(1),EMPNAME VARCHAR(50),ADDRESS TINYTEXT,SALARY DECIMAL(10,2),DEPARTMENT ENUM('HR','IT','SALES','FINANCE','SUPPORT'),SKILLS SET('JAVA','PYTHON','SQL','EXCEL'),DOJ DATE;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> CREATE TABLE COMPANY_STAFF(EMPID INT,AGE TINYTEXT,EXPERIENCE SMALLINT,GENGER CHAR(1),EMPNAME VARCHAR(50),ADDRESS TINYTEXT,SALARY DECIMAL(10,2),DEPARTMENT ENUM('HR','IT','SALES','FINANCE','SUPPORT'),SKILLS SET('JAVA','PYTHON','SQL','EXCEL'),DOJ DATE;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> CREATE TABLE COMPANY_STAFF(EMPID INT,AGE TINYTEXT,EXPERIENCE SMALLINT,GENGER CHAR(1),EMPNAME VARCHAR(50),ADDRESS TINYTEXT,SALARY DECIMAL(10,2),DEPARTMENT ENUM('HR','IT','SALES','FINANCE','SUPPORT'),SKILLS SET('JAVA','PYTHON','SQL','EXCEL'),DOJ DATE;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> ^C
+mysql> CREATE TABLE COMPANY_STAFF(EMPID INT,AGE TINYTEXT,EXPERIENCE SMALLINT,GENGER CHAR(1),EMPNAME VARCHAR(50),ADDRESS TINYTEXT,SALARY DECIMAL(10,2),DEPARTMENT ENUM('HR','IT','SALES','FINANCE','SUPPORT'),SKILLS SET('JAVA','PYTHON','SQL','EXCEL'),DOJ DATE;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> CREATE TABLE COMPANY_STAFF(EMPID INT,AGE TINYTEXT,EXPERIENCE SMALLINT,GENGER CHAR(1),EMPNAME VARCHAR(50),ADDRESS TINYTEXT,SALARY DECIMAL(10,2),DEPARTMENT ENUM('HR','IT','SALES','FINANCE','SUPPORT'),SKILLS SET('JAVA','PYTHON','SQL','EXCEL'),DOJ DATE;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> CREATE TABLE COMPANY_STAFF(EMPID INT, AGE TINYTEXT, EXPERIENCE SMALLINT, GENGER CHAR(1), EMPNAME VARCHAR(50), ADDRESS TINYTEXT, SALARY DECIMAL(10,2) , DEPARTMENT ENUM('HR','IT','SALES','FINANCE','SUPPORT'), SKILLS SET('JAVA','PYTHON','SQL','EXCEL'), DOJ DATE;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> CREATE TABLE COMPANY_STAFF(
+    -> EMPID INT,
+    -> AGE TINYTEXT,
+    -> EXPERIENCE SMALLINT,
+    -> GNEDER CHAR(1),
+    -> EMPNAME VARCHAR(50),
+    -> ADDRESS TINYTEXT,
+    -> SALARY DECIMAL(10,2),
+    -> DEPARTMENT ENUM('HR','IT','SALES','FINANCE','SUPPORT'),
+    -> SKILLS SET('JAVA','PYTHON','SQL','EXCEL'),
+    -> DOJ DATE);'
+Query OK, 0 rows affected (0.04 sec)
+
+    '> DESC COMPANY_STAFF;
+    '>
+    '>
+    '>
+    '>
+    '> ^C
+mysql> DESC COMPANY_STAFF;
++------------+---------------------------------------------+------+-----+---------+-------+
+| Field      | Type                                        | Null | Key | Default | Extra |
++------------+---------------------------------------------+------+-----+---------+-------+
+| EMPID      | int                                         | YES  |     | NULL    |       |
+| AGE        | tinytext                                    | YES  |     | NULL    |       |
+| EXPERIENCE | smallint                                    | YES  |     | NULL    |       |
+| GNEDER     | char(1)                                     | YES  |     | NULL    |       |
+| EMPNAME    | varchar(50)                                 | YES  |     | NULL    |       |
+| ADDRESS    | tinytext                                    | YES  |     | NULL    |       |
+| SALARY     | decimal(10,2)                               | YES  |     | NULL    |       |
+| DEPARTMENT | enum('HR','IT','SALES','FINANCE','SUPPORT') | YES  |     | NULL    |       |
+| SKILLS     | set('JAVA','PYTHON','SQL','EXCEL')          | YES  |     | NULL    |       |
+| DOJ        | date                                        | YES  |     | NULL    |       |
++------------+---------------------------------------------+------+-----+---------+-------+
+10 rows in set (0.01 sec)
+
+mysql> ALTER TABLE COMPANY_STAFF ADD EMAIL VARCHAR(30);
+Query OK, 0 rows affected (0.07 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> DESC COMPANY_STAFF;
++------------+---------------------------------------------+------+-----+---------+-------+
+| Field      | Type                                        | Null | Key | Default | Extra |
++------------+---------------------------------------------+------+-----+---------+-------+
+| EMPID      | int                                         | YES  |     | NULL    |       |
+| AGE        | tinytext                                    | YES  |     | NULL    |       |
+| EXPERIENCE | smallint                                    | YES  |     | NULL    |       |
+| GNEDER     | char(1)                                     | YES  |     | NULL    |       |
+| EMPNAME    | varchar(50)                                 | YES  |     | NULL    |       |
+| ADDRESS    | tinytext                                    | YES  |     | NULL    |       |
+| SALARY     | decimal(10,2)                               | YES  |     | NULL    |       |
+| DEPARTMENT | enum('HR','IT','SALES','FINANCE','SUPPORT') | YES  |     | NULL    |       |
+| SKILLS     | set('JAVA','PYTHON','SQL','EXCEL')          | YES  |     | NULL    |       |
+| DOJ        | date                                        | YES  |     | NULL    |       |
+| EMAIL      | varchar(30)                                 | YES  |     | NULL    |       |
++------------+---------------------------------------------+------+-----+---------+-------+
+11 rows in set (0.00 sec)
+
+mysql> ALTER TABLE COMPANY_STAFF ADD PHONENUMBER INT;
+Query OK, 0 rows affected (0.05 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> DESC COMPANY_STAFF;
++-------------+---------------------------------------------+------+-----+---------+-------+
+| Field       | Type                                        | Null | Key | Default | Extra |
++-------------+---------------------------------------------+------+-----+---------+-------+
+| EMPID       | int                                         | YES  |     | NULL    |       |
+| AGE         | tinytext                                    | YES  |     | NULL    |       |
+| EXPERIENCE  | smallint                                    | YES  |     | NULL    |       |
+| GNEDER      | char(1)                                     | YES  |     | NULL    |       |
+| EMPNAME     | varchar(50)                                 | YES  |     | NULL    |       |
+| ADDRESS     | tinytext                                    | YES  |     | NULL    |       |
+| SALARY      | decimal(10,2)                               | YES  |     | NULL    |       |
+| DEPARTMENT  | enum('HR','IT','SALES','FINANCE','SUPPORT') | YES  |     | NULL    |       |
+| SKILLS      | set('JAVA','PYTHON','SQL','EXCEL')          | YES  |     | NULL    |       |
+| DOJ         | date                                        | YES  |     | NULL    |       |
+| EMAIL       | varchar(30)                                 | YES  |     | NULL    |       |
+| PHONENUMBER | int                                         | YES  |     | NULL    |       |
++-------------+---------------------------------------------+------+-----+---------+-------+
+12 rows in set (0.00 sec)
+
+mysql> ALTER TABLE COMPANY_STAFF ADD BONUS INT AFTER SALARY;
+Query OK, 0 rows affected (0.05 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> DESC COMPANY_STAFF;
++-------------+---------------------------------------------+------+-----+---------+-------+
+| Field       | Type                                        | Null | Key | Default | Extra |
++-------------+---------------------------------------------+------+-----+---------+-------+
+| EMPID       | int                                         | YES  |     | NULL    |       |
+| AGE         | tinytext                                    | YES  |     | NULL    |       |
+| EXPERIENCE  | smallint                                    | YES  |     | NULL    |       |
+| GNEDER      | char(1)                                     | YES  |     | NULL    |       |
+| EMPNAME     | varchar(50)                                 | YES  |     | NULL    |       |
+| ADDRESS     | tinytext                                    | YES  |     | NULL    |       |
+| SALARY      | decimal(10,2)                               | YES  |     | NULL    |       |
+| BONUS       | int                                         | YES  |     | NULL    |       |
+| DEPARTMENT  | enum('HR','IT','SALES','FINANCE','SUPPORT') | YES  |     | NULL    |       |
+| SKILLS      | set('JAVA','PYTHON','SQL','EXCEL')          | YES  |     | NULL    |       |
+| DOJ         | date                                        | YES  |     | NULL    |       |
+| EMAIL       | varchar(30)                                 | YES  |     | NULL    |       |
+| PHONENUMBER | int                                         | YES  |     | NULL    |       |
++-------------+---------------------------------------------+------+-----+---------+-------+
+13 rows in set (0.00 sec)
+
+mysql> ALTER TABLE COMPANY_STAFF ADD STATUS VARCHAR(56) AFTER DEPARTMENT;
+Query OK, 0 rows affected (0.05 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> DESC COMPANY_STAFF;
++-------------+---------------------------------------------+------+-----+---------+-------+
+| Field       | Type                                        | Null | Key | Default | Extra |
++-------------+---------------------------------------------+------+-----+---------+-------+
+| EMPID       | int                                         | YES  |     | NULL    |       |
+| AGE         | tinytext                                    | YES  |     | NULL    |       |
+| EXPERIENCE  | smallint                                    | YES  |     | NULL    |       |
+| GNEDER      | char(1)                                     | YES  |     | NULL    |       |
+| EMPNAME     | varchar(50)                                 | YES  |     | NULL    |       |
+| ADDRESS     | tinytext                                    | YES  |     | NULL    |       |
+| SALARY      | decimal(10,2)                               | YES  |     | NULL    |       |
+| BONUS       | int                                         | YES  |     | NULL    |       |
+| DEPARTMENT  | enum('HR','IT','SALES','FINANCE','SUPPORT') | YES  |     | NULL    |       |
+| STATUS      | varchar(56)                                 | YES  |     | NULL    |       |
+| SKILLS      | set('JAVA','PYTHON','SQL','EXCEL')          | YES  |     | NULL    |       |
+| DOJ         | date                                        | YES  |     | NULL    |       |
+| EMAIL       | varchar(30)                                 | YES  |     | NULL    |       |
+| PHONENUMBER | int                                         | YES  |     | NULL    |       |
++-------------+---------------------------------------------+------+-----+---------+-------+
+14 rows in set (0.00 sec)
+
+mysql> ALTER TABLE COMPANY_STAFF ADD COMPANY_NAME CHAR(50) FIRST;
+Query OK, 0 rows affected (0.05 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> DESC COMPANY_STAFF;
++--------------+---------------------------------------------+------+-----+---------+-------+
+| Field        | Type                                        | Null | Key | Default | Extra |
++--------------+---------------------------------------------+------+-----+---------+-------+
+| COMPANY_NAME | char(50)                                    | YES  |     | NULL    |       |
+| EMPID        | int                                         | YES  |     | NULL    |       |
+| AGE          | tinytext                                    | YES  |     | NULL    |       |
+| EXPERIENCE   | smallint                                    | YES  |     | NULL    |       |
+| GNEDER       | char(1)                                     | YES  |     | NULL    |       |
+| EMPNAME      | varchar(50)                                 | YES  |     | NULL    |       |
+| ADDRESS      | tinytext                                    | YES  |     | NULL    |       |
+| SALARY       | decimal(10,2)                               | YES  |     | NULL    |       |
+| BONUS        | int                                         | YES  |     | NULL    |       |
+| DEPARTMENT   | enum('HR','IT','SALES','FINANCE','SUPPORT') | YES  |     | NULL    |       |
+| STATUS       | varchar(56)                                 | YES  |     | NULL    |       |
+| SKILLS       | set('JAVA','PYTHON','SQL','EXCEL')          | YES  |     | NULL    |       |
+| DOJ          | date                                        | YES  |     | NULL    |       |
+| EMAIL        | varchar(30)                                 | YES  |     | NULL    |       |
+| PHONENUMBER  | int                                         | YES  |     | NULL    |       |
++--------------+---------------------------------------------+------+-----+---------+-------+
+15 rows in set (0.00 sec)
+
+mysql> ALTER TABLE COMPANY_STAFF ADD QUALIFICATION VARCHAR(56) AFTER EMPNAME;
+Query OK, 0 rows affected (0.05 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> DESC COMPANY_STAFF;
++---------------+---------------------------------------------+------+-----+---------+-------+
+| Field         | Type                                        | Null | Key | Default | Extra |
++---------------+---------------------------------------------+------+-----+---------+-------+
+| COMPANY_NAME  | char(50)                                    | YES  |     | NULL    |       |
+| EMPID         | int                                         | YES  |     | NULL    |       |
+| AGE           | tinytext                                    | YES  |     | NULL    |       |
+| EXPERIENCE    | smallint                                    | YES  |     | NULL    |       |
+| GNEDER        | char(1)                                     | YES  |     | NULL    |       |
+| EMPNAME       | varchar(50)                                 | YES  |     | NULL    |       |
+| QUALIFICATION | varchar(56)                                 | YES  |     | NULL    |       |
+| ADDRESS       | tinytext                                    | YES  |     | NULL    |       |
+| SALARY        | decimal(10,2)                               | YES  |     | NULL    |       |
+| BONUS         | int                                         | YES  |     | NULL    |       |
+| DEPARTMENT    | enum('HR','IT','SALES','FINANCE','SUPPORT') | YES  |     | NULL    |       |
+| STATUS        | varchar(56)                                 | YES  |     | NULL    |       |
+| SKILLS        | set('JAVA','PYTHON','SQL','EXCEL')          | YES  |     | NULL    |       |
+| DOJ           | date                                        | YES  |     | NULL    |       |
+| EMAIL         | varchar(30)                                 | YES  |     | NULL    |       |
+| PHONENUMBER   | int                                         | YES  |     | NULL    |       |
++---------------+---------------------------------------------+------+-----+---------+-------+
+16 rows in set (0.00 sec)
+
+mysql> ALTER TABLE COMPANY_STAFF EMPNAME VARCHAR(60);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'EMPNAME VARCHAR(60)' at line 1
+mysql> ALTER TABLE COMPANY_STAFF MODIFY EMPNAME VARCHAR(60);
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> DESC COMPANY_STAFF;
++---------------+---------------------------------------------+------+-----+---------+-------+
+| Field         | Type                                        | Null | Key | Default | Extra |
++---------------+---------------------------------------------+------+-----+---------+-------+
+| COMPANY_NAME  | char(50)                                    | YES  |     | NULL    |       |
+| EMPID         | int                                         | YES  |     | NULL    |       |
+| AGE           | tinytext                                    | YES  |     | NULL    |       |
+| EXPERIENCE    | smallint                                    | YES  |     | NULL    |       |
+| GNEDER        | char(1)                                     | YES  |     | NULL    |       |
+| EMPNAME       | varchar(60)                                 | YES  |     | NULL    |       |
+| QUALIFICATION | varchar(56)                                 | YES  |     | NULL    |       |
+| ADDRESS       | tinytext                                    | YES  |     | NULL    |       |
+| SALARY        | decimal(10,2)                               | YES  |     | NULL    |       |
+| BONUS         | int                                         | YES  |     | NULL    |       |
+| DEPARTMENT    | enum('HR','IT','SALES','FINANCE','SUPPORT') | YES  |     | NULL    |       |
+| STATUS        | varchar(56)                                 | YES  |     | NULL    |       |
+| SKILLS        | set('JAVA','PYTHON','SQL','EXCEL')          | YES  |     | NULL    |       |
+| DOJ           | date                                        | YES  |     | NULL    |       |
+| EMAIL         | varchar(30)                                 | YES  |     | NULL    |       |
+| PHONENUMBER   | int                                         | YES  |     | NULL    |       |
++---------------+---------------------------------------------+------+-----+---------+-------+
+16 rows in set (0.00 sec)
+
+mysql> ALTER TABLE COMPANY_STAFF MODIFY SALARY DECIMAL(5,5);
+Query OK, 0 rows affected (0.06 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> DESC COMPANY_STAFF;
++---------------+---------------------------------------------+------+-----+---------+-------+
+| Field         | Type                                        | Null | Key | Default | Extra |
++---------------+---------------------------------------------+------+-----+---------+-------+
+| COMPANY_NAME  | char(50)                                    | YES  |     | NULL    |       |
+| EMPID         | int                                         | YES  |     | NULL    |       |
+| AGE           | tinytext                                    | YES  |     | NULL    |       |
+| EXPERIENCE    | smallint                                    | YES  |     | NULL    |       |
+| GNEDER        | char(1)                                     | YES  |     | NULL    |       |
+| EMPNAME       | varchar(60)                                 | YES  |     | NULL    |       |
+| QUALIFICATION | varchar(56)                                 | YES  |     | NULL    |       |
+| ADDRESS       | tinytext                                    | YES  |     | NULL    |       |
+| SALARY        | decimal(5,5)                                | YES  |     | NULL    |       |
+| BONUS         | int                                         | YES  |     | NULL    |       |
+| DEPARTMENT    | enum('HR','IT','SALES','FINANCE','SUPPORT') | YES  |     | NULL    |       |
+| STATUS        | varchar(56)                                 | YES  |     | NULL    |       |
+| SKILLS        | set('JAVA','PYTHON','SQL','EXCEL')          | YES  |     | NULL    |       |
+| DOJ           | date                                        | YES  |     | NULL    |       |
+| EMAIL         | varchar(30)                                 | YES  |     | NULL    |       |
+| PHONENUMBER   | int                                         | YES  |     | NULL    |       |
++---------------+---------------------------------------------+------+-----+---------+-------+
+16 rows in set (0.00 sec)
+
+mysql> ALTER TABLE COMPANY_STAFF CHANGE EMPNAME EMPLOYEENAME VARCHAR(60);
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> DESC COMPANY_STAFF;
++---------------+---------------------------------------------+------+-----+---------+-------+
+| Field         | Type                                        | Null | Key | Default | Extra |
++---------------+---------------------------------------------+------+-----+---------+-------+
+| COMPANY_NAME  | char(50)                                    | YES  |     | NULL    |       |
+| EMPID         | int                                         | YES  |     | NULL    |       |
+| AGE           | tinytext                                    | YES  |     | NULL    |       |
+| EXPERIENCE    | smallint                                    | YES  |     | NULL    |       |
+| GNEDER        | char(1)                                     | YES  |     | NULL    |       |
+| EMPLOYEENAME  | varchar(60)                                 | YES  |     | NULL    |       |
+| QUALIFICATION | varchar(56)                                 | YES  |     | NULL    |       |
+| ADDRESS       | tinytext                                    | YES  |     | NULL    |       |
+| SALARY        | decimal(5,5)                                | YES  |     | NULL    |       |
+| BONUS         | int                                         | YES  |     | NULL    |       |
+| DEPARTMENT    | enum('HR','IT','SALES','FINANCE','SUPPORT') | YES  |     | NULL    |       |
+| STATUS        | varchar(56)                                 | YES  |     | NULL    |       |
+| SKILLS        | set('JAVA','PYTHON','SQL','EXCEL')          | YES  |     | NULL    |       |
+| DOJ           | date                                        | YES  |     | NULL    |       |
+| EMAIL         | varchar(30)                                 | YES  |     | NULL    |       |
+| PHONENUMBER   | int                                         | YES  |     | NULL    |       |
++---------------+---------------------------------------------+------+-----+---------+-------+
+16 rows in set (0.00 sec)
+
+mysql> ALTER TABLE COMPANY_STAFF CHANGE DOJ DATEOFJOIN VARCHAR(60);
+Query OK, 0 rows affected (0.07 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> DESC COMPANY_STAFF;
++---------------+---------------------------------------------+------+-----+---------+-------+
+| Field         | Type                                        | Null | Key | Default | Extra |
++---------------+---------------------------------------------+------+-----+---------+-------+
+| COMPANY_NAME  | char(50)                                    | YES  |     | NULL    |       |
+| EMPID         | int                                         | YES  |     | NULL    |       |
+| AGE           | tinytext                                    | YES  |     | NULL    |       |
+| EXPERIENCE    | smallint                                    | YES  |     | NULL    |       |
+| GNEDER        | char(1)                                     | YES  |     | NULL    |       |
+| EMPLOYEENAME  | varchar(60)                                 | YES  |     | NULL    |       |
+| QUALIFICATION | varchar(56)                                 | YES  |     | NULL    |       |
+| ADDRESS       | tinytext                                    | YES  |     | NULL    |       |
+| SALARY        | decimal(5,5)                                | YES  |     | NULL    |       |
+| BONUS         | int                                         | YES  |     | NULL    |       |
+| DEPARTMENT    | enum('HR','IT','SALES','FINANCE','SUPPORT') | YES  |     | NULL    |       |
+| STATUS        | varchar(56)                                 | YES  |     | NULL    |       |
+| SKILLS        | set('JAVA','PYTHON','SQL','EXCEL')          | YES  |     | NULL    |       |
+| DATEOFJOIN    | varchar(60)                                 | YES  |     | NULL    |       |
+| EMAIL         | varchar(30)                                 | YES  |     | NULL    |       |
+| PHONENUMBER   | int                                         | YES  |     | NULL    |       |
++---------------+---------------------------------------------+------+-----+---------+-------+
+16 rows in set (0.00 sec)
+
+mysql> ALTER TABLE COMPANY_STAFF DROP BONUS;
+Query OK, 0 rows affected (0.05 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> DESC COMPANY_STAFF;
++---------------+---------------------------------------------+------+-----+---------+-------+
+| Field         | Type                                        | Null | Key | Default | Extra |
++---------------+---------------------------------------------+------+-----+---------+-------+
+| COMPANY_NAME  | char(50)                                    | YES  |     | NULL    |       |
+| EMPID         | int                                         | YES  |     | NULL    |       |
+| AGE           | tinytext                                    | YES  |     | NULL    |       |
+| EXPERIENCE    | smallint                                    | YES  |     | NULL    |       |
+| GNEDER        | char(1)                                     | YES  |     | NULL    |       |
+| EMPLOYEENAME  | varchar(60)                                 | YES  |     | NULL    |       |
+| QUALIFICATION | varchar(56)                                 | YES  |     | NULL    |       |
+| ADDRESS       | tinytext                                    | YES  |     | NULL    |       |
+| SALARY        | decimal(5,5)                                | YES  |     | NULL    |       |
+| DEPARTMENT    | enum('HR','IT','SALES','FINANCE','SUPPORT') | YES  |     | NULL    |       |
+| STATUS        | varchar(56)                                 | YES  |     | NULL    |       |
+| SKILLS        | set('JAVA','PYTHON','SQL','EXCEL')          | YES  |     | NULL    |       |
+| DATEOFJOIN    | varchar(60)                                 | YES  |     | NULL    |       |
+| EMAIL         | varchar(30)                                 | YES  |     | NULL    |       |
+| PHONENUMBER   | int                                         | YES  |     | NULL    |       |
++---------------+---------------------------------------------+------+-----+---------+-------+
+15 rows in set (0.00 sec)
+
+mysql> ALTER TABLE COMPANY_STAFF DROP PHONENUMBER;
+Query OK, 0 rows affected (0.05 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> DESC COMPANY_STAFF;
++---------------+---------------------------------------------+------+-----+---------+-------+
+| Field         | Type                                        | Null | Key | Default | Extra |
++---------------+---------------------------------------------+------+-----+---------+-------+
+| COMPANY_NAME  | char(50)                                    | YES  |     | NULL    |       |
+| EMPID         | int                                         | YES  |     | NULL    |       |
+| AGE           | tinytext                                    | YES  |     | NULL    |       |
+| EXPERIENCE    | smallint                                    | YES  |     | NULL    |       |
+| GNEDER        | char(1)                                     | YES  |     | NULL    |       |
+| EMPLOYEENAME  | varchar(60)                                 | YES  |     | NULL    |       |
+| QUALIFICATION | varchar(56)                                 | YES  |     | NULL    |       |
+| ADDRESS       | tinytext                                    | YES  |     | NULL    |       |
+| SALARY        | decimal(5,5)                                | YES  |     | NULL    |       |
+| DEPARTMENT    | enum('HR','IT','SALES','FINANCE','SUPPORT') | YES  |     | NULL    |       |
+| STATUS        | varchar(56)                                 | YES  |     | NULL    |       |
+| SKILLS        | set('JAVA','PYTHON','SQL','EXCEL')          | YES  |     | NULL    |       |
+| DATEOFJOIN    | varchar(60)                                 | YES  |     | NULL    |       |
+| EMAIL         | varchar(30)                                 | YES  |     | NULL    |       |
++---------------+---------------------------------------------+------+-----+---------+-------+
+14 rows in set (0.00 sec)
+
+mysql> ALTER TABLE COMPANY_STAFF RENMAE STAFFRECORDS;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'RENMAE STAFFRECORDS' at line 1
+mysql> ALTER TABLE COMPANY_STAFF RENMAE TO STAFFRECORDS;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'RENMAE TO STAFFRECORDS' at line 1
+mysql> ALTER TABLE COMPANY_STAFF RENAME  STAFFRECORDS;
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> DESC COMPANY_STAFF;
+ERROR 1146 (42S02): Table 'pfs4.company_staff' doesn't exist
+mysql> DESC STAFFRECORDS;
++---------------+---------------------------------------------+------+-----+---------+-------+
+| Field         | Type                                        | Null | Key | Default | Extra |
++---------------+---------------------------------------------+------+-----+---------+-------+
+| COMPANY_NAME  | char(50)                                    | YES  |     | NULL    |       |
+| EMPID         | int                                         | YES  |     | NULL    |       |
+| AGE           | tinytext                                    | YES  |     | NULL    |       |
+| EXPERIENCE    | smallint                                    | YES  |     | NULL    |       |
+| GNEDER        | char(1)                                     | YES  |     | NULL    |       |
+| EMPLOYEENAME  | varchar(60)                                 | YES  |     | NULL    |       |
+| QUALIFICATION | varchar(56)                                 | YES  |     | NULL    |       |
+| ADDRESS       | tinytext                                    | YES  |     | NULL    |       |
+| SALARY        | decimal(5,5)                                | YES  |     | NULL    |       |
+| DEPARTMENT    | enum('HR','IT','SALES','FINANCE','SUPPORT') | YES  |     | NULL    |       |
+| STATUS        | varchar(56)                                 | YES  |     | NULL    |       |
+| SKILLS        | set('JAVA','PYTHON','SQL','EXCEL')          | YES  |     | NULL    |       |
+| DATEOFJOIN    | varchar(60)                                 | YES  |     | NULL    |       |
+| EMAIL         | varchar(30)                                 | YES  |     | NULL    |       |
++---------------+---------------------------------------------+------+-----+---------+-------+
+14 rows in set (0.00 sec)
+
+mysql> ALTER TABLE STAFFRECORDS RENAME COMPANY_STAFF;
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> DESC COMPANY_STAFF;
++---------------+---------------------------------------------+------+-----+---------+-------+
+| Field         | Type                                        | Null | Key | Default | Extra |
++---------------+---------------------------------------------+------+-----+---------+-------+
+| COMPANY_NAME  | char(50)                                    | YES  |     | NULL    |       |
+| EMPID         | int                                         | YES  |     | NULL    |       |
+| AGE           | tinytext                                    | YES  |     | NULL    |       |
+| EXPERIENCE    | smallint                                    | YES  |     | NULL    |       |
+| GNEDER        | char(1)                                     | YES  |     | NULL    |       |
+| EMPLOYEENAME  | varchar(60)                                 | YES  |     | NULL    |       |
+| QUALIFICATION | varchar(56)                                 | YES  |     | NULL    |       |
+| ADDRESS       | tinytext                                    | YES  |     | NULL    |       |
+| SALARY        | decimal(5,5)                                | YES  |     | NULL    |       |
+| DEPARTMENT    | enum('HR','IT','SALES','FINANCE','SUPPORT') | YES  |     | NULL    |       |
+| STATUS        | varchar(56)                                 | YES  |     | NULL    |       |
+| SKILLS        | set('JAVA','PYTHON','SQL','EXCEL')          | YES  |     | NULL    |       |
+| DATEOFJOIN    | varchar(60)                                 | YES  |     | NULL    |       |
+| EMAIL         | varchar(30)                                 | YES  |     | NULL    |       |
++---------------+---------------------------------------------+------+-----+---------+-------+
+14 rows in set (0.00 sec)
+
+mysql> ALTER TABLE COMPANY_STAFF LAST_UPDATED DATE AFTER SKILLS;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'LAST_UPDATED DATE AFTER SKILLS' at line 1
+mysql> ALTER TABLE COMPANY_STAFF ADD LAST_UPDATED DATE AFTER SKILLS;
+Query OK, 0 rows affected (0.05 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> DESC COMPANY_STAFF;
++---------------+---------------------------------------------+------+-----+---------+-------+
+| Field         | Type                                        | Null | Key | Default | Extra |
++---------------+---------------------------------------------+------+-----+---------+-------+
+| COMPANY_NAME  | char(50)                                    | YES  |     | NULL    |       |
+| EMPID         | int                                         | YES  |     | NULL    |       |
+| AGE           | tinytext                                    | YES  |     | NULL    |       |
+| EXPERIENCE    | smallint                                    | YES  |     | NULL    |       |
+| GNEDER        | char(1)                                     | YES  |     | NULL    |       |
+| EMPLOYEENAME  | varchar(60)                                 | YES  |     | NULL    |       |
+| QUALIFICATION | varchar(56)                                 | YES  |     | NULL    |       |
+| ADDRESS       | tinytext                                    | YES  |     | NULL    |       |
+| SALARY        | decimal(5,5)                                | YES  |     | NULL    |       |
+| DEPARTMENT    | enum('HR','IT','SALES','FINANCE','SUPPORT') | YES  |     | NULL    |       |
+| STATUS        | varchar(56)                                 | YES  |     | NULL    |       |
+| SKILLS        | set('JAVA','PYTHON','SQL','EXCEL')          | YES  |     | NULL    |       |
+| LAST_UPDATED  | date                                        | YES  |     | NULL    |       |
+| DATEOFJOIN    | varchar(60)                                 | YES  |     | NULL    |       |
+| EMAIL         | varchar(30)                                 | YES  |     | NULL    |       |
++---------------+---------------------------------------------+------+-----+---------+-------+
+15 rows in set (0.00 sec)
+
+mysql> DESC COMPANY_STAFF;
++---------------+---------------------------------------------+------+-----+---------+-------+
+| Field         | Type                                        | Null | Key | Default | Extra |
++---------------+---------------------------------------------+------+-----+---------+-------+
+| COMPANY_NAME  | char(50)                                    | YES  |     | NULL    |       |
+| EMPID         | int                                         | YES  |     | NULL    |       |
+| AGE           | tinytext                                    | YES  |     | NULL    |       |
+| EXPERIENCE    | smallint                                    | YES  |     | NULL    |       |
+| GNEDER        | char(1)                                     | YES  |     | NULL    |       |
+| EMPLOYEENAME  | varchar(60)                                 | YES  |     | NULL    |       |
+| QUALIFICATION | varchar(56)                                 | YES  |     | NULL    |       |
+| ADDRESS       | tinytext                                    | YES  |     | NULL    |       |
+| SALARY        | decimal(5,5)                                | YES  |     | NULL    |       |
+| DEPARTMENT    | enum('HR','IT','SALES','FINANCE','SUPPORT') | YES  |     | NULL    |       |
+| STATUS        | varchar(56)                                 | YES  |     | NULL    |       |
+| SKILLS        | set('JAVA','PYTHON','SQL','EXCEL')          | YES  |     | NULL    |       |
+| LAST_UPDATED  | date                                        | YES  |     | NULL    |       |
+| DATEOFJOIN    | varchar(60)                                 | YES  |     | NULL    |       |
+| EMAIL         | varchar(30)                                 | YES  |     | NULL    |       |
++---------------+---------------------------------------------+------+-----+---------+-------+
+15 rows in set (0.01 sec)
+
+mysql>
