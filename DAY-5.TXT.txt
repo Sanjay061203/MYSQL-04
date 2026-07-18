@@ -1,0 +1,551 @@
+DML
+===
+1.insert
+--------
+syntax
+------
+insert into tablename(column-name)values(column-values);
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| 43sd432            |
+| _____              |
+| da4                |
+| da_4               |
+| information_schema |
+| mysql              |
+| performance_schema |
+| pfs4               |
+| sanjaykumar        |
+| sys                |
++--------------------+
+10 rows in set (0.04 sec)
+
+mysql> use PFS4;
+Database changed
+mysql> SHOW TABLES;
++----------------+
+| Tables_in_pfs4 |
++----------------+
+| company_staff  |
+| employees      |
++----------------+
+2 rows in set (0.02 sec)
+
+mysql> DESC COMPANY_STAFF;
++---------------+---------------------------------------------+------+-----+---------+-------+
+| Field         | Type                                        | Null | Key | Default | Extra |
++---------------+---------------------------------------------+------+-----+---------+-------+
+| COMPANY_NAME  | char(50)                                    | YES  |     | NULL    |       |
+| EMPID         | int                                         | YES  |     | NULL    |       |
+| AGE           | tinytext                                    | YES  |     | NULL    |       |
+| EXPERIENCE    | smallint                                    | YES  |     | NULL    |       |
+| GNEDER        | char(1)                                     | YES  |     | NULL    |       |
+| EMPLOYEENAME  | varchar(60)                                 | YES  |     | NULL    |       |
+| QUALIFICATION | varchar(56)                                 | YES  |     | NULL    |       |
+| ADDRESS       | tinytext                                    | YES  |     | NULL    |       |
+| SALARY        | decimal(5,5)                                | YES  |     | NULL    |       |
+| DEPARTMENT    | enum('HR','IT','SALES','FINANCE','SUPPORT') | YES  |     | NULL    |       |
+| STATUS        | varchar(56)                                 | YES  |     | NULL    |       |
+| SKILLS        | set('JAVA','PYTHON','SQL','EXCEL')          | YES  |     | NULL    |       |
+| LAST_UPDATED  | date                                        | YES  |     | NULL    |       |
+| DATEOFJOIN    | varchar(60)                                 | YES  |     | NULL    |       |
+| EMAIL         | varchar(30)                                 | YES  |     | NULL    |       |
++---------------+---------------------------------------------+------+-----+---------+-------+
+15 rows in set (0.01 sec)
+
+mysql> ALTER TABLE COMPANY_STAFF ADD WEFEDF INT SECOND;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'SECOND' at line 1
+mysql> ALTER TABLE COMPANY_STAFF ADD WEFEDF CHAR(87) SECOND;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'SECOND' at line 1
+mysql> ALTER TABLE COMPANY_STAFF ADD WEFEDF CHAR(87) FIRST;
+Query OK, 0 rows affected (0.10 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> DESC COMPANY_STAFF;
++---------------+---------------------------------------------+------+-----+---------+-------+
+| Field         | Type                                        | Null | Key | Default | Extra |
++---------------+---------------------------------------------+------+-----+---------+-------+
+| WEFEDF        | char(87)                                    | YES  |     | NULL    |       |
+| COMPANY_NAME  | char(50)                                    | YES  |     | NULL    |       |
+| EMPID         | int                                         | YES  |     | NULL    |       |
+| AGE           | tinytext                                    | YES  |     | NULL    |       |
+| EXPERIENCE    | smallint                                    | YES  |     | NULL    |       |
+| GNEDER        | char(1)                                     | YES  |     | NULL    |       |
+| EMPLOYEENAME  | varchar(60)                                 | YES  |     | NULL    |       |
+| QUALIFICATION | varchar(56)                                 | YES  |     | NULL    |       |
+| ADDRESS       | tinytext                                    | YES  |     | NULL    |       |
+| SALARY        | decimal(5,5)                                | YES  |     | NULL    |       |
+| DEPARTMENT    | enum('HR','IT','SALES','FINANCE','SUPPORT') | YES  |     | NULL    |       |
+| STATUS        | varchar(56)                                 | YES  |     | NULL    |       |
+| SKILLS        | set('JAVA','PYTHON','SQL','EXCEL')          | YES  |     | NULL    |       |
+| LAST_UPDATED  | date                                        | YES  |     | NULL    |       |
+| DATEOFJOIN    | varchar(60)                                 | YES  |     | NULL    |       |
+| EMAIL         | varchar(30)                                 | YES  |     | NULL    |       |
++---------------+---------------------------------------------+------+-----+---------+-------+
+16 rows in set (0.01 sec)
+
+mysql> ALTER TABLE COMPANY_STAFF DROP WEFEDF;
+Query OK, 0 rows affected (0.05 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> DESC COMPANY_STAFF;
++---------------+---------------------------------------------+------+-----+---------+-------+
+| Field         | Type                                        | Null | Key | Default | Extra |
++---------------+---------------------------------------------+------+-----+---------+-------+
+| COMPANY_NAME  | char(50)                                    | YES  |     | NULL    |       |
+| EMPID         | int                                         | YES  |     | NULL    |       |
+| AGE           | tinytext                                    | YES  |     | NULL    |       |
+| EXPERIENCE    | smallint                                    | YES  |     | NULL    |       |
+| GNEDER        | char(1)                                     | YES  |     | NULL    |       |
+| EMPLOYEENAME  | varchar(60)                                 | YES  |     | NULL    |       |
+| QUALIFICATION | varchar(56)                                 | YES  |     | NULL    |       |
+| ADDRESS       | tinytext                                    | YES  |     | NULL    |       |
+| SALARY        | decimal(5,5)                                | YES  |     | NULL    |       |
+| DEPARTMENT    | enum('HR','IT','SALES','FINANCE','SUPPORT') | YES  |     | NULL    |       |
+| STATUS        | varchar(56)                                 | YES  |     | NULL    |       |
+| SKILLS        | set('JAVA','PYTHON','SQL','EXCEL')          | YES  |     | NULL    |       |
+| LAST_UPDATED  | date                                        | YES  |     | NULL    |       |
+| DATEOFJOIN    | varchar(60)                                 | YES  |     | NULL    |       |
+| EMAIL         | varchar(30)                                 | YES  |     | NULL    |       |
++---------------+---------------------------------------------+------+-----+---------+-------+
+15 rows in set (0.00 sec)
+
+mysql> ALTER TABLE COMPANY_STAFF ADD WEFEDF CHAR(87),WEFVDF INT;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'WEFVDF INT' at line 1
+mysql> ALTER TABLE COMPANY_STAFF ADD WEFEDF CHAR(87) WEFVDF VARCHAR(45);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'WEFVDF VARCHAR(45)' at line 1
+mysql> ALTER TABLE COMPANY_STAFF ADD WEFEDF CHAR(87), WEFVDF VARCHAR(45);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'WEFVDF VARCHAR(45)' at line 1
+mysql> ALTER TABLE COMPANY_STAFF RENMAE TO SCHOOL;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'RENMAE TO SCHOOL' at line 1
+mysql> ALTER TABLE COMPANY_STAFF RENMAE TO SCHOOL;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'RENMAE TO SCHOOL' at line 1
+mysql> ALTER TABLE COMPANY_STAFF RENMAE  SCHOOL;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'RENMAE  SCHOOL' at line 1
+mysql> ALTER TABLE COMPANY_STAFF RENMAE  SCHOOL;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'RENMAE  SCHOOL' at line 1
+mysql> ALTER TABLE COMPANY_STAFF RENAME SCHOOL;
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> DESC COMPANY_STAFF;
+ERROR 1146 (42S02): Table 'pfs4.company_staff' doesn't exist
+mysql> DESC SCHOOL;
++---------------+---------------------------------------------+------+-----+---------+-------+
+| Field         | Type                                        | Null | Key | Default | Extra |
++---------------+---------------------------------------------+------+-----+---------+-------+
+| COMPANY_NAME  | char(50)                                    | YES  |     | NULL    |       |
+| EMPID         | int                                         | YES  |     | NULL    |       |
+| AGE           | tinytext                                    | YES  |     | NULL    |       |
+| EXPERIENCE    | smallint                                    | YES  |     | NULL    |       |
+| GNEDER        | char(1)                                     | YES  |     | NULL    |       |
+| EMPLOYEENAME  | varchar(60)                                 | YES  |     | NULL    |       |
+| QUALIFICATION | varchar(56)                                 | YES  |     | NULL    |       |
+| ADDRESS       | tinytext                                    | YES  |     | NULL    |       |
+| SALARY        | decimal(5,5)                                | YES  |     | NULL    |       |
+| DEPARTMENT    | enum('HR','IT','SALES','FINANCE','SUPPORT') | YES  |     | NULL    |       |
+| STATUS        | varchar(56)                                 | YES  |     | NULL    |       |
+| SKILLS        | set('JAVA','PYTHON','SQL','EXCEL')          | YES  |     | NULL    |       |
+| LAST_UPDATED  | date                                        | YES  |     | NULL    |       |
+| DATEOFJOIN    | varchar(60)                                 | YES  |     | NULL    |       |
+| EMAIL         | varchar(30)                                 | YES  |     | NULL    |       |
++---------------+---------------------------------------------+------+-----+---------+-------+
+15 rows in set (0.01 sec)
+
+mysql> ALTER TABLE SCHOOL RENAME COMPANY_STAFF;
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> DESC COMPANY_STAFF;
++---------------+---------------------------------------------+------+-----+---------+-------+
+| Field         | Type                                        | Null | Key | Default | Extra |
++---------------+---------------------------------------------+------+-----+---------+-------+
+| COMPANY_NAME  | char(50)                                    | YES  |     | NULL    |       |
+| EMPID         | int                                         | YES  |     | NULL    |       |
+| AGE           | tinytext                                    | YES  |     | NULL    |       |
+| EXPERIENCE    | smallint                                    | YES  |     | NULL    |       |
+| GNEDER        | char(1)                                     | YES  |     | NULL    |       |
+| EMPLOYEENAME  | varchar(60)                                 | YES  |     | NULL    |       |
+| QUALIFICATION | varchar(56)                                 | YES  |     | NULL    |       |
+| ADDRESS       | tinytext                                    | YES  |     | NULL    |       |
+| SALARY        | decimal(5,5)                                | YES  |     | NULL    |       |
+| DEPARTMENT    | enum('HR','IT','SALES','FINANCE','SUPPORT') | YES  |     | NULL    |       |
+| STATUS        | varchar(56)                                 | YES  |     | NULL    |       |
+| SKILLS        | set('JAVA','PYTHON','SQL','EXCEL')          | YES  |     | NULL    |       |
+| LAST_UPDATED  | date                                        | YES  |     | NULL    |       |
+| DATEOFJOIN    | varchar(60)                                 | YES  |     | NULL    |       |
+| EMAIL         | varchar(30)                                 | YES  |     | NULL    |       |
++---------------+---------------------------------------------+------+-----+---------+-------+
+15 rows in set (0.00 sec)
+
+mysql> SHOW DATABASES;
++--------------------+
+| Database           |
++--------------------+
+| 43sd432            |
+| _____              |
+| da4                |
+| da_4               |
+| information_schema |
+| mysql              |
+| performance_schema |
+| pfs4               |
+| sanjaykumar        |
+| sys                |
++--------------------+
+10 rows in set (0.07 sec)
+
+mysql> TEE/D:/MYSQL/DAY-5
+    -> TEE/D:/MYSQL/DAY-5;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'TEE/D:/MYSQL/DAY-5
+TEE/D:/MYSQL/DAY-5' at line 1
+mysql> TEE/D:/MYSQL/DAY-5.TXT
+    -> TEE/D:/MYSQL/DAY-5.TXT;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'TEE/D:/MYSQL/DAY-5.TXT
+TEE/D:/MYSQL/DAY-5.TXT' at line 1
+mysql> TEE/D:/MYSQL/DAY-5.TXT:
+    -> TEE/D:/MYSQL/DAY-5.TXT;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'TEE/D:/MYSQL/DAY-5.TXT:
+TEE/D:/MYSQL/DAY-5.TXT' at line 1
+mysql> DESC EMPLOYEES;
++--------------+-------------+------+-----+---------+-------+
+| Field        | Type        | Null | Key | Default | Extra |
++--------------+-------------+------+-----+---------+-------+
+| EMPLOYEEID   | char(34)    | YES  |     | NULL    |       |
+| SURNAME      | varchar(23) | YES  |     | NULL    |       |
+| EMPLOYEENAME | varchar(60) | YES  |     | NULL    |       |
+| AGE          | int         | YES  |     | NULL    |       |
+| DOJ          | date        | YES  |     | NULL    |       |
+| ADDRESS      | tinytext    | YES  |     | NULL    |       |
+| DEPT         | varchar(50) | YES  |     | NULL    |       |
++--------------+-------------+------+-----+---------+-------+
+7 rows in set (0.02 sec)
+
+mysql> INSER INTO EMPLOYEES(EMPLOYEEID,SURNAME,EMPLOYEENAME,AGE,DOJ,ADDRESS,DEPY)VALUES('E0001','SANJAY','ROCKY',22,22-12-2021,'GOPALAPATNAM','PFS-4');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'INSER INTO EMPLOYEES(EMPLOYEEID,SURNAME,EMPLOYEENAME,AGE,DOJ,ADDRESS,DEPY)VALUES' at line 1
+mysql> INSER INTO EMPLOYEES(EMPLOYEEID,SURNAME,EMPLOYEENAME,AGE,DOJ,ADDRESS,DEPT)VALUES('E0001','SANJAY','ROCKY',22,22-12-2021,'GOPALAPATNAM','PFS-4');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'INSER INTO EMPLOYEES(EMPLOYEEID,SURNAME,EMPLOYEENAME,AGE,DOJ,ADDRESS,DEPT)VALUES' at line 1
+mysql> INSER INTO EMPLOYEES(EMPLOYEEID,SURNAME,EMPLOYEENAME,AGE,DOJ,ADDRESS,DEPT)VALUES('E0001','SANJAY','ROCKY','22,22-12-2021','GOPALAPATNAM','PFS-4');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'INSER INTO EMPLOYEES(EMPLOYEEID,SURNAME,EMPLOYEENAME,AGE,DOJ,ADDRESS,DEPT)VALUES' at line 1
+mysql> INSER INTO EMPLOYEES(EMPLOYEEID,SURNAME,EMPLOYEENAME,AGE,DOJ,ADDRESS,DEPT)VALUES('E0001','SANJAY','ROCKY',22,'22-12-2021','GOPALAPATNAM','PFS-4');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'INSER INTO EMPLOYEES(EMPLOYEEID,SURNAME,EMPLOYEENAME,AGE,DOJ,ADDRESS,DEPT)VALUES' at line 1
+mysql> INSER INTO EMPLOYEES(EMPLOYEEID,SURNAME,EMPLOYEENAME,AGE,DOJ,ADDRESS,DEPT)VALUES('E0001','SANJAY','ROCKY',22,'2021-06-12','GOPALAPATNAM','PFS-4');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'INSER INTO EMPLOYEES(EMPLOYEEID,SURNAME,EMPLOYEENAME,AGE,DOJ,ADDRESS,DEPT)VALUES' at line 1
+mysql> INSERT INTO EMPLOYEES(EMPLOYEEID,SURNAME,EMPLOYEENAME,AGE,DOJ,ADDRESS,DEPT)VALUES('E0001','SANJAY','ROCKY',22,'2021-06-12','GOPALAPATNAM','PFS-4');
+Query OK, 1 row affected (0.03 sec)
+
+mysql> SELECT*FROM EMPLOYEES;
++------------+---------+--------------+------+------------+--------------+-------+
+| EMPLOYEEID | SURNAME | EMPLOYEENAME | AGE  | DOJ        | ADDRESS      | DEPT  |
++------------+---------+--------------+------+------------+--------------+-------+
+| E0001      | SANJAY  | ROCKY        |   22 | 2021-06-12 | GOPALAPATNAM | PFS-4 |
++------------+---------+--------------+------+------------+--------------+-------+
+1 row in set (0.00 sec)
+
+mysql> INSERT INTO EMPLOYEES(EMPLOYEEID,SURNAME,EMPLOYEENAME,AGE,DOJ,ADDRESS,DEPT)VALUES('E0001','SANJAY','ROCKY',22,'2021-06-12','GOPALAPATNAM','PFS-4'),
+    -> ('E0002','ROCK','SOLID',34,'2022-11-21','VIZ','PYTHON'),
+    -> ('E0003','ROCKY','KUMAR',35,'2022-10-21','VJZ','JAVA'),
+    -> ('E0004','MALLI','RANI',35,'2022-09-21','RJDM','FULLSTACK');
+Query OK, 4 rows affected (0.01 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> SELECT*FROM EMPLOYEES;
++------------+---------+--------------+------+------------+--------------+-----------+
+| EMPLOYEEID | SURNAME | EMPLOYEENAME | AGE  | DOJ        | ADDRESS      | DEPT      |
++------------+---------+--------------+------+------------+--------------+-----------+
+| E0001      | SANJAY  | ROCKY        |   22 | 2021-06-12 | GOPALAPATNAM | PFS-4     |
+| E0001      | SANJAY  | ROCKY        |   22 | 2021-06-12 | GOPALAPATNAM | PFS-4     |
+| E0002      | ROCK    | SOLID        |   34 | 2022-11-21 | VIZ          | PYTHON    |
+| E0003      | ROCKY   | KUMAR        |   35 | 2022-10-21 | VJZ          | JAVA      |
+| E0004      | MALLI   | RANI         |   35 | 2022-09-21 | RJDM         | FULLSTACK |
++------------+---------+--------------+------+------------+--------------+-----------+
+5 rows in set (0.00 sec)
+
+mysql> INSERT INTO EMPLOYEES(EMPLOYEENAME)VALUES('SANJAYROCKY');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> SELECT*FROM EMPLOYEES;
++------------+---------+--------------+------+------------+--------------+-----------+
+| EMPLOYEEID | SURNAME | EMPLOYEENAME | AGE  | DOJ        | ADDRESS      | DEPT      |
++------------+---------+--------------+------+------------+--------------+-----------+
+| E0001      | SANJAY  | ROCKY        |   22 | 2021-06-12 | GOPALAPATNAM | PFS-4     |
+| E0001      | SANJAY  | ROCKY        |   22 | 2021-06-12 | GOPALAPATNAM | PFS-4     |
+| E0002      | ROCK    | SOLID        |   34 | 2022-11-21 | VIZ          | PYTHON    |
+| E0003      | ROCKY   | KUMAR        |   35 | 2022-10-21 | VJZ          | JAVA      |
+| E0004      | MALLI   | RANI         |   35 | 2022-09-21 | RJDM         | FULLSTACK |
+| NULL       | NULL    | SANJAYROCKY  | NULL | NULL       | NULL         | NULL      |
++------------+---------+--------------+------+------------+--------------+-----------+
+6 rows in set (0.00 sec)
+
+mysql> SELECT*FROM EMPLOYEES;
++------------+---------+--------------+------+------------+--------------+-----------+
+| EMPLOYEEID | SURNAME | EMPLOYEENAME | AGE  | DOJ        | ADDRESS      | DEPT      |
++------------+---------+--------------+------+------------+--------------+-----------+
+| E0001      | SANJAY  | ROCKY        |   22 | 2021-06-12 | GOPALAPATNAM | PFS-4     |
+| E0001      | SANJAY  | ROCKY        |   22 | 2021-06-12 | GOPALAPATNAM | PFS-4     |
+| E0002      | ROCK    | SOLID        |   34 | 2022-11-21 | VIZ          | PYTHON    |
+| E0003      | ROCKY   | KUMAR        |   35 | 2022-10-21 | VJZ          | JAVA      |
+| E0004      | MALLI   | RANI         |   35 | 2022-09-21 | RJDM         | FULLSTACK |
+| NULL       | NULL    | SANJAYROCKY  | NULL | NULL       | NULL         | NULL      |
++------------+---------+--------------+------+------------+--------------+-----------+
+6 rows in set (0.00 sec)
+
+mysql> INSERT INTO EMPLOYEES VALUES('E0005','SURI','BABU',33,'2012-02-31','GVP','JAVA'),
+    -> ('E0006','LOKI','BABU',65,'2022-02-31','GVP','PFS'),
+    -> ('E0007','YOGESH','VARMA',98,'2002-02-31','GVP','DA'),
+    -> ('E0008','VINOD','VARMA',1023,'1956-02-31','CMPLX','PFS'),
+    -> );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 5
+mysql> INSERT INTO EMPLOYEES VALUES('E0005','SURI','BABU',33,'2012-02-31','GVP','JAVA'),
+    -> ('E0006','LOKI','BABU',65,'2022-02-31','GVP','PFS'),
+    -> ('E0007','YOGESH','VARMA',98,'2002-02-31','GVP','DA'),
+    -> ('E0008','VINOD','VARMA',1023,'1956-02-31','CMPLX','PFS'),
+    -> ('E0007','YOGESH','VARMA',98,'2002-02-31','GVP','DA'),^C
+mysql> ('E0006','LOKI','BABU',65,'2022-02-31','GVP','PFS'),
+    -> ^C
+mysql> INSERT INTO EMPLOYEES VALUES('E0005','SURI','BABU',33,'2012-02-31','GVP','JAVA'),
+    -> ('E0006','LOKI','BABU',65,'2022-02-31','GVP','PFS'),
+    -> ('E0007','YOGESH','VARMA',98,'2002-02-31','GVP','DA'),
+    -> ('E0008','VINOD','VARMA',1023,'1956-02-31','CMPLX','PFS')
+    -> );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 5
+mysql> INSERT INTO EMPLOYEES VALUES(('E0005','SURI','BABU',33,'2012-02-31','GVP','JAVA'),
+    -> INSERT INTO EMPLOYEES VALUES
+    -> ('E0006','LOKI','BABU',65,'2022-02-31','GVP','PFS'),
+    -> ('E0007','YOGESH','VARMA',98,'2002-02-31','GVP','DA'),
+    -> ('E0008','VINOD','VARMA',1023,'1956-02-31','CMPLX','PFS');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'INTO EMPLOYEES VALUES
+('E0006','LOKI','BABU',65,'2022-02-31','GVP','PFS'),
+('E00' at line 2
+mysql> INSERT INTO EMPLOYEES
+    -> VALUES
+    -> ('E0006','LOKI','BABU',65,'2022-02-31','GVP','PFS'),
+    -> ('E0007','YOGESH','VARMA',98,'2002-02-31','GVP','DA'),
+    -> ('E0008','VINOD','VARMA',23,'1956-02-31','CMPLX','PFS');
+ERROR 1292 (22007): Incorrect date value: '2022-02-31' for column 'DOJ' at row 1
+mysql> INSERT INTO EMPLOYEES
+    -> VALUES
+    -> ('E0006','LOKI','BABU',65,'2022-02-22','GVP','PFS'),
+    -> ('E0007','YOGESH','VARMA',98,'2002-02-31','GVP','DA'),
+    -> ('E0008','VINOD','VARMA',23,'1956-02-31','CMPLX','PFS');
+ERROR 1292 (22007): Incorrect date value: '2002-02-31' for column 'DOJ' at row 2
+mysql> INSERT INTO EMPLOYEES
+    -> VALUES
+    -> ('E0006','LOKI','BABU',65,'2022-02-22','GVP','PFS'),
+    -> ('E0007','YOGESH','VARMA',98,'2002-02-11','GVP','DA'),
+    -> ('E0008','VINOD','VARMA',23,'1956-02-21','CMPLX','PFS');
+Query OK, 3 rows affected (0.01 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> SELECT*FROM EMPLOYEES;
++------------+---------+--------------+------+------------+--------------+-----------+
+| EMPLOYEEID | SURNAME | EMPLOYEENAME | AGE  | DOJ        | ADDRESS      | DEPT      |
++------------+---------+--------------+------+------------+--------------+-----------+
+| E0001      | SANJAY  | ROCKY        |   22 | 2021-06-12 | GOPALAPATNAM | PFS-4     |
+| E0001      | SANJAY  | ROCKY        |   22 | 2021-06-12 | GOPALAPATNAM | PFS-4     |
+| E0002      | ROCK    | SOLID        |   34 | 2022-11-21 | VIZ          | PYTHON    |
+| E0003      | ROCKY   | KUMAR        |   35 | 2022-10-21 | VJZ          | JAVA      |
+| E0004      | MALLI   | RANI         |   35 | 2022-09-21 | RJDM         | FULLSTACK |
+| NULL       | NULL    | SANJAYROCKY  | NULL | NULL       | NULL         | NULL      |
+| E0006      | LOKI    | BABU         |   65 | 2022-02-22 | GVP          | PFS       |
+| E0007      | YOGESH  | VARMA        |   98 | 2002-02-11 | GVP          | DA        |
+| E0008      | VINOD   | VARMA        |   23 | 1956-02-21 | CMPLX        | PFS       |
++------------+---------+--------------+------+------------+--------------+-----------+
+9 rows in set (0.00 sec)
+
+mysql> INSERT INTO EMPLOYEES
+    -> VALUES
+    -> ('E0009','LOKI','BABU',1065,'2022-02-02','GVP','PFS');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> SELECT*FROM EMPLOYEES;
++------------+---------+--------------+------+------------+--------------+-----------+
+| EMPLOYEEID | SURNAME | EMPLOYEENAME | AGE  | DOJ        | ADDRESS      | DEPT      |
++------------+---------+--------------+------+------------+--------------+-----------+
+| E0001      | SANJAY  | ROCKY        |   22 | 2021-06-12 | GOPALAPATNAM | PFS-4     |
+| E0001      | SANJAY  | ROCKY        |   22 | 2021-06-12 | GOPALAPATNAM | PFS-4     |
+| E0002      | ROCK    | SOLID        |   34 | 2022-11-21 | VIZ          | PYTHON    |
+| E0003      | ROCKY   | KUMAR        |   35 | 2022-10-21 | VJZ          | JAVA      |
+| E0004      | MALLI   | RANI         |   35 | 2022-09-21 | RJDM         | FULLSTACK |
+| NULL       | NULL    | SANJAYROCKY  | NULL | NULL       | NULL         | NULL      |
+| E0006      | LOKI    | BABU         |   65 | 2022-02-22 | GVP          | PFS       |
+| E0007      | YOGESH  | VARMA        |   98 | 2002-02-11 | GVP          | DA        |
+| E0008      | VINOD   | VARMA        |   23 | 1956-02-21 | CMPLX        | PFS       |
+| E0009      | LOKI    | BABU         | 1065 | 2022-02-02 | GVP          | PFS       |
++------------+---------+--------------+------+------------+--------------+-----------+
+10 rows in set (0.00 sec)
+
+mysql> INSERT INTO EMPLOYEES
+    -> VALUES
+    -> (
+    -> ^C
+mysql> INSERT INTO EMPLOYEES SET
+    -> EMPLOYEEID='E0010'
+    -> SURNAME='GANTYADA'
+    -> EMPLOYEENAME='SANJAYKUMAR'
+    -> AGE=18
+    -> DOJ='2021-05-22'
+    -> ADDRESS='GVP'
+    -> DEPT='PYTHON';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'SURNAME='GANTYADA'
+EMPLOYEENAME='SANJAYKUMAR'
+AGE=18
+DOJ='2021-05-22'
+ADDRESS='G' at line 3
+mysql> INSERT INTO EMPLOYEES SET
+    -> EMPLOYEEID='E0010',
+    -> SURNAME='GANTYADA',
+    -> EMPLOYEENAME='SANJAYKUMAR',
+    -> AGE=18,
+    -> DOJ='2021-05-22',
+    -> ADDRESS='GVP',
+    -> DEPT='PYTHON';
+Query OK, 1 row affected (0.01 sec)
+
+mysql> SELECT*FROM EMPLOYEES;
++------------+----------+--------------+------+------------+--------------+-----------+
+| EMPLOYEEID | SURNAME  | EMPLOYEENAME | AGE  | DOJ        | ADDRESS      | DEPT      |
++------------+----------+--------------+------+------------+--------------+-----------+
+| E0001      | SANJAY   | ROCKY        |   22 | 2021-06-12 | GOPALAPATNAM | PFS-4     |
+| E0001      | SANJAY   | ROCKY        |   22 | 2021-06-12 | GOPALAPATNAM | PFS-4     |
+| E0002      | ROCK     | SOLID        |   34 | 2022-11-21 | VIZ          | PYTHON    |
+| E0003      | ROCKY    | KUMAR        |   35 | 2022-10-21 | VJZ          | JAVA      |
+| E0004      | MALLI    | RANI         |   35 | 2022-09-21 | RJDM         | FULLSTACK |
+| NULL       | NULL     | SANJAYROCKY  | NULL | NULL       | NULL         | NULL      |
+| E0006      | LOKI     | BABU         |   65 | 2022-02-22 | GVP          | PFS       |
+| E0007      | YOGESH   | VARMA        |   98 | 2002-02-11 | GVP          | DA        |
+| E0008      | VINOD    | VARMA        |   23 | 1956-02-21 | CMPLX        | PFS       |
+| E0009      | LOKI     | BABU         | 1065 | 2022-02-02 | GVP          | PFS       |
+| E0010      | GANTYADA | SANJAYKUMAR  |   18 | 2021-05-22 | GVP          | PYTHON    |
++------------+----------+--------------+------+------------+--------------+-----------+
+11 rows in set (0.00 sec)
+
+mysql> --UPDATE
+    -> ---------
+    -> UPDATE TABLENAME SET COLUMNNAME=UPDATEVALUE WHERE SOME CONDITION.
+    -> UPDATE EMPLOYEES SET EMPLOYEEID='E0011',SURNAME='ROCKINGSTAR',AGE=43,DOJ='2002-05-21',ADDRESS='VSP',DEPT='JAVA' WHERE EMPLOYEENAME='SANJAYROCKY';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '--UPDATE
+-------
+UPDATE TABLENAME SET COLUMNNAME=UPDATEVALUE WHERE SOME CONDITIO' at line 1
+mysql> UPDATE EMPLOYEES SET EMPLOYEEID='E0011',SURNAME='ROCKINGSTAR',AGE=43,DOJ='2002-05-21',ADDRESS='VSP',DEPT='JAVA' WHERE EMPLOYEENAME='SANJAYROCKY';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> SELECT*FROM EMPLOYEES;
++------------+-------------+--------------+------+------------+--------------+-----------+
+| EMPLOYEEID | SURNAME     | EMPLOYEENAME | AGE  | DOJ        | ADDRESS      | DEPT      |
++------------+-------------+--------------+------+------------+--------------+-----------+
+| E0001      | SANJAY      | ROCKY        |   22 | 2021-06-12 | GOPALAPATNAM | PFS-4     |
+| E0001      | SANJAY      | ROCKY        |   22 | 2021-06-12 | GOPALAPATNAM | PFS-4     |
+| E0002      | ROCK        | SOLID        |   34 | 2022-11-21 | VIZ          | PYTHON    |
+| E0003      | ROCKY       | KUMAR        |   35 | 2022-10-21 | VJZ          | JAVA      |
+| E0004      | MALLI       | RANI         |   35 | 2022-09-21 | RJDM         | FULLSTACK |
+| E0011      | ROCKINGSTAR | SANJAYROCKY  |   43 | 2002-05-21 | VSP          | JAVA      |
+| E0006      | LOKI        | BABU         |   65 | 2022-02-22 | GVP          | PFS       |
+| E0007      | YOGESH      | VARMA        |   98 | 2002-02-11 | GVP          | DA        |
+| E0008      | VINOD       | VARMA        |   23 | 1956-02-21 | CMPLX        | PFS       |
+| E0009      | LOKI        | BABU         | 1065 | 2022-02-02 | GVP          | PFS       |
+| E0010      | GANTYADA    | SANJAYKUMAR  |   18 | 2021-05-22 | GVP          | PYTHON    |
++------------+-------------+--------------+------+------------+--------------+-----------+
+11 rows in set (0.00 sec)
+
+mysql> UPDATE EMPLOYEES SET DEPT='PFS' WHERE DEPT='PFS-4';
+Query OK, 2 rows affected (0.01 sec)
+Rows matched: 2  Changed: 2  Warnings: 0
+
+mysql> SELECT*FROM EMPLOYESS;
+ERROR 1146 (42S02): Table 'pfs4.employess' doesn't exist
+mysql> SELECT*FROM EMPLOYEES;
++------------+-------------+--------------+------+------------+--------------+-----------+
+| EMPLOYEEID | SURNAME     | EMPLOYEENAME | AGE  | DOJ        | ADDRESS      | DEPT      |
++------------+-------------+--------------+------+------------+--------------+-----------+
+| E0001      | SANJAY      | ROCKY        |   22 | 2021-06-12 | GOPALAPATNAM | PFS       |
+| E0001      | SANJAY      | ROCKY        |   22 | 2021-06-12 | GOPALAPATNAM | PFS       |
+| E0002      | ROCK        | SOLID        |   34 | 2022-11-21 | VIZ          | PYTHON    |
+| E0003      | ROCKY       | KUMAR        |   35 | 2022-10-21 | VJZ          | JAVA      |
+| E0004      | MALLI       | RANI         |   35 | 2022-09-21 | RJDM         | FULLSTACK |
+| E0011      | ROCKINGSTAR | SANJAYROCKY  |   43 | 2002-05-21 | VSP          | JAVA      |
+| E0006      | LOKI        | BABU         |   65 | 2022-02-22 | GVP          | PFS       |
+| E0007      | YOGESH      | VARMA        |   98 | 2002-02-11 | GVP          | DA        |
+| E0008      | VINOD       | VARMA        |   23 | 1956-02-21 | CMPLX        | PFS       |
+| E0009      | LOKI        | BABU         | 1065 | 2022-02-02 | GVP          | PFS       |
+| E0010      | GANTYADA    | SANJAYKUMAR  |   18 | 2021-05-22 | GVP          | PYTHON    |
++------------+-------------+--------------+------+------------+--------------+-----------+
+11 rows in set (0.00 sec)
+
+mysql> UPDATE EMPLOYEES SET DEPT='PYTHON' WHERE DEPT='PFS';
+Query OK, 5 rows affected (0.01 sec)
+Rows matched: 5  Changed: 5  Warnings: 0
+
+mysql> SELECT*FROM EMPLOYEES;
++------------+-------------+--------------+------+------------+--------------+-----------+
+| EMPLOYEEID | SURNAME     | EMPLOYEENAME | AGE  | DOJ        | ADDRESS      | DEPT      |
++------------+-------------+--------------+------+------------+--------------+-----------+
+| E0001      | SANJAY      | ROCKY        |   22 | 2021-06-12 | GOPALAPATNAM | PYTHON    |
+| E0001      | SANJAY      | ROCKY        |   22 | 2021-06-12 | GOPALAPATNAM | PYTHON    |
+| E0002      | ROCK        | SOLID        |   34 | 2022-11-21 | VIZ          | PYTHON    |
+| E0003      | ROCKY       | KUMAR        |   35 | 2022-10-21 | VJZ          | JAVA      |
+| E0004      | MALLI       | RANI         |   35 | 2022-09-21 | RJDM         | FULLSTACK |
+| E0011      | ROCKINGSTAR | SANJAYROCKY  |   43 | 2002-05-21 | VSP          | JAVA      |
+| E0006      | LOKI        | BABU         |   65 | 2022-02-22 | GVP          | PYTHON    |
+| E0007      | YOGESH      | VARMA        |   98 | 2002-02-11 | GVP          | DA        |
+| E0008      | VINOD       | VARMA        |   23 | 1956-02-21 | CMPLX        | PYTHON    |
+| E0009      | LOKI        | BABU         | 1065 | 2022-02-02 | GVP          | PYTHON    |
+| E0010      | GANTYADA    | SANJAYKUMAR  |   18 | 2021-05-22 | GVP          | PYTHON    |
++------------+-------------+--------------+------+------------+--------------+-----------+
+11 rows in set (0.00 sec)
+
+mysql> UPDATE EMPLOYEES SET EMPLO='PFS' WHERE DEPT='PFS-4';
+ERROR 1054 (42S22): Unknown column 'EMPLO' in 'field list'
+mysql> --DELETE
+    -> DELETE FROM TABLENAME WHERE CONDITION.
+    -> DELETE FROM EMPLOYEES WHERE EMPLOYEENAME='KUMAR';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '--DELETE
+DELETE FROM TABLENAME WHERE CONDITION.
+DELETE FROM EMPLOYEES WHERE EMPL' at line 1
+mysql> DELETE FROM EMPLOYEES  EMPLOYEENAME='KUMAR';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '='KUMAR'' at line 1
+mysql> DELETE FROM EMPLOYEES  EMPLOYEENAME='KUMAR' WHERE EMPLOYEEID=E0003;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '='KUMAR' WHERE EMPLOYEEID=E0003' at line 1
+mysql> DELETE FROM EMPLOYEES  EMPLOYEENAME='KUMAR' WHERE EMPLOYEEID='E0003';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '='KUMAR' WHERE EMPLOYEEID='E0003'' at line 1
+mysql> DELETE FROM EMPLOYEES  EMPLOYEENAME='KUMAR' WHERE EMPLOYEEID='E0003';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '='KUMAR' WHERE EMPLOYEEID='E0003'' at line 1
+mysql> DELETE FROM EMPLOYEES  WHERE EMPLOYEENAME='KUMAR';
+Query OK, 1 row affected (0.01 sec)
+
+mysql> SELECT*FROM EMPLOYEES;
++------------+-------------+--------------+------+------------+--------------+-----------+
+| EMPLOYEEID | SURNAME     | EMPLOYEENAME | AGE  | DOJ        | ADDRESS      | DEPT      |
++------------+-------------+--------------+------+------------+--------------+-----------+
+| E0001      | SANJAY      | ROCKY        |   22 | 2021-06-12 | GOPALAPATNAM | PYTHON    |
+| E0001      | SANJAY      | ROCKY        |   22 | 2021-06-12 | GOPALAPATNAM | PYTHON    |
+| E0002      | ROCK        | SOLID        |   34 | 2022-11-21 | VIZ          | PYTHON    |
+| E0004      | MALLI       | RANI         |   35 | 2022-09-21 | RJDM         | FULLSTACK |
+| E0011      | ROCKINGSTAR | SANJAYROCKY  |   43 | 2002-05-21 | VSP          | JAVA      |
+| E0006      | LOKI        | BABU         |   65 | 2022-02-22 | GVP          | PYTHON    |
+| E0007      | YOGESH      | VARMA        |   98 | 2002-02-11 | GVP          | DA        |
+| E0008      | VINOD       | VARMA        |   23 | 1956-02-21 | CMPLX        | PYTHON    |
+| E0009      | LOKI        | BABU         | 1065 | 2022-02-02 | GVP          | PYTHON    |
+| E0010      | GANTYADA    | SANJAYKUMAR  |   18 | 2021-05-22 | GVP          | PYTHON    |
++------------+-------------+--------------+------+------------+--------------+-----------+
+10 rows in set (0.00 sec)
+
+mysql> TRUNCATE TABLE EMPLOYEES;
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> DESC EMPLOYEES;
++--------------+-------------+------+-----+---------+-------+
+| Field        | Type        | Null | Key | Default | Extra |
++--------------+-------------+------+-----+---------+-------+
+| EMPLOYEEID   | char(34)    | YES  |     | NULL    |       |
+| SURNAME      | varchar(23) | YES  |     | NULL    |       |
+| EMPLOYEENAME | varchar(60) | YES  |     | NULL    |       |
+| AGE          | int         | YES  |     | NULL    |       |
+| DOJ          | date        | YES  |     | NULL    |       |
+| ADDRESS      | tinytext    | YES  |     | NULL    |       |
+| DEPT         | varchar(50) | YES  |     | NULL    |       |
++--------------+-------------+------+-----+---------+-------+
+7 rows in set (0.01 sec)
+
+mysql>
